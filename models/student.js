@@ -3,14 +3,16 @@ module.exports = function(sequelize, DataTypes) {
   var Student = sequelize.define('Student', {
     first_name: DataTypes.STRING,
     last_name: DataTypes.STRING,
-    email: DataTypes.STRING,
-    jurusan: DataTypes.STRING
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
-  });
-  return Student;
-};
+    email: {
+      type: DataTypes.STRING,
+      validate: { isEmail: {msg: "Must in email format"} }
+    },
+    jurusan: DataTypes.STRING  }, {
+        classMethods: {
+          associate: function(models) {
+            // associations can be defined here
+          }
+        }
+      });
+      return Student;
+    };

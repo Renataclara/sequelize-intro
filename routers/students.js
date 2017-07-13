@@ -11,14 +11,17 @@ router.get('/', function(req, res){
 });
 
 router.get('/add', function(req, res){
-  res.render('studentAdd');
+  res.render('studentAdd', {err: null}); // error message catch
 });
 
 //add new student req.body
 router.post('/add', function(req, res){
   Model.Student.create({ first_name: req.body.first_name, last_name: req.body.last_name, email: req.body.email, jurusan: req.body.jurusan })
   .then( function(){
-    res.redirect('/students');
+    res.redirect('/students' );
+  })
+  .catch( function(err){
+    res.render('studentAdd', {err: err.message}); // error message catch
   })
 });
 
