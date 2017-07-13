@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+    table {
+      font-family:Comic Extrabold, sans-serif;
+      position: center;
+    }
+
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 1px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  </style>
+  <title>Student</title>
+  </head>
+
+  <body>
+  <center><h3>Students data</h3><center><br>
+    <a href="/students/add"><button type="Submit" name="Add">Add New Student</button></a>
+    <br><br>
+    <form action="/students" method="POST">
+  <br><br>
+  <center>
+  <table>
+    <tr>
+      <th>id</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Degree</th>
+      <th colspan='2'></th>
+    </tr>
+    <% data_student.forEach(student =>{%>
+    <tr>
+      <td><%= student.id %></td>
+      <td><%= student.first_name %></td>
+      <td><%= student.last_name %></td>
+      <td><%= student.email %></td>
+      <td><%= student.jurusan %></td>
+      <td><a href="/students/edit/<%= student.id %>"><button type="button" name="Edit">EDIT</button></a></td>
+      <td><a href="/students/delete/<%= student.id %>"><button type="button" name="Delete">DELETE</button></a></td>
+    </tr>
+      <%})%>
+    </table>
+  </center>
+  </body>
+</html>
