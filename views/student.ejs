@@ -44,8 +44,9 @@
       <td><%= student.last_name %></td>
       <td><%= student.email %></td>
       <td><%= student.jurusan %></td>
-      <td><a href="/students/edit/<%= student.id %>"><button type="button" name="Edit">EDIT</button></a></td>
-      <td><a href="/students/delete/<%= student.id %>"><button type="button" name="Delete">DELETE</button></a></td>
+      <td><td><a href="/students/edit/<%=student.id%>">Edit</a></td>
+      <td> <a href="/students/delete/<%=student.id%>" onclick="return confirm('Are you sure want to delete this student?');">Delete</a></td>
+
     </tr>
       <%})%>
     </table>
