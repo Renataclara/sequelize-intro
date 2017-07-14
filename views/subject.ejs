@@ -29,12 +29,14 @@
     <tr>
       <th>id</th>
       <th>Subject Name</th>
+      <th>Teachers</th>
       <th colspan='2'></th>
     </tr>
     <% data_subject.forEach(subject =>{%>
     <tr>
       <td><%= subject.id %></td>
       <td><%= subject.subject_name %></td>
+      <td><%= subject.first_name %></td>
     </tr>
       <%})%>
     </table>

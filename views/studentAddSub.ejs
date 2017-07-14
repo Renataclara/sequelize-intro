@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+  <center>
+    <h1>STUDENT ADD SUBJECT FORM</h1><br><br>
+    <form action="/students/addsubject/<%=data_student.id%>" method="POST">
+    <table>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Degree</th>
+      </tr>
+      <tr>
+        <td><%= data_student.first_name %></td>
+        <td><%= data_student.last_name %></td>
+        <td><%= data_student.email %></td>
+        <td><%= data_student.jurusan %></td>
+      </tr>
+      <table>
+    <br>
+    Choose Subject:
+    <br>
+    <select name = "SubjectId" >
+      <option value = "<%=data_subject.SubjectId %>" selected> <%= data_subject.SubjectId %>
+      </option>
+      <% data_subject.forEach( cont => { %>
+      <option value ="<%= cont.id %>">
+      <%= cont.subject_name %>
+      </option>
+      <% }) %>
+      </select>
+      <br>
+    <input type="submit" value="Submit">
+  </form>
+  </center>
+  </body>
+</html>

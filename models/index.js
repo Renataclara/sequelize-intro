@@ -30,6 +30,23 @@ Object.keys(db).forEach(function(modelName) {
   }
 });
 
+// has many ambil data dri yang association result
+// function satuData(){
+//   db.Profile.findById(4)
+//     .then(profile => {
+//       profile.getAddresses()
+//       .then( addresses => {
+//         addresses.forEach( a => {
+// console.log(a.street);
+// })
+//       })
+//     })
+//   })
+//   .catch(err => {
+//     console.log(err);
+//   })
+// };
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 

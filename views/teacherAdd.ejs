@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+  <center>
+    <h2>ADD NEW Teacher</h2><br><br>
+    <form action="/teachers/add" method="POST">
+    First Name:
+    <br>
+    <input type="text" name="first_name" value="">
+    <br><br>
+    Last Name:
+    <br>
+    <input type="text" name="last_name" value="">
+    <br><br>
+    Email:
+    <br>
+    <input type="text" name="email" value="">
+    <br>
+    Subject :
+    <br>
+    <select name = "SubjectId">
+    <option value "">
+      Select ID Subject
+    </option>
+    <% data_subject.forEach( cont => { %>
+    <option value ="<%= cont.id %>">
+    <%= cont.subject_name %>
+    </option>
+    <% }) %>
+  </select>
+    <br>
+    <br>
+    <input type="submit" value="Submit">
+    <br>
+  </form>
+  </center>
+  </body>
+</html>

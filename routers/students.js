@@ -37,8 +37,25 @@ router.post('/edit/:id', function(req, res) {
   Model.Student.update({ first_name: req.body.first_name, last_name: req.body.last_name, email: req.body.email, jurusan: req.body.jurusan},
     {
       where: {id: req.params.id}
-    }
-  )
+    })
+  .then( function(){
+  res.redirect('/students');
+  })
+});
+
+//go to the student edit form
+router.get('/addsubject/:id', function(req, res){
+  Model.Student.findById(req.params.id)
+  .then (function (rows){
+    Model.Subject.findAll()
+    .then (function (rows2){
+    res.render('studentAddSub', {data_student: rows, data_subject: rows2});
+  })
+   })
+ });
+
+router.post('/addsubject/:id', function(req, res) {
+  Model.StudentSubject.create({ StudentId: req.params.id, SubjectId: req.body.SubjectId})
   .then( function(){
   res.redirect('/students');
   })
