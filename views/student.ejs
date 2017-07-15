@@ -30,6 +30,7 @@
   <center>
   <table>
     <tr>
+      <th>No</th>
       <th>id</th>
       <th>First Name</th>
       <th>Last Name</th>
@@ -37,8 +38,10 @@
       <th>Degree</th>
       <th colspan='2'></th>
     </tr>
+    <% var sum=1;%>
     <% data_student.forEach(student =>{%>
     <tr>
+      <td><%= sum++ %></td>
       <td><%= student.id %></td>
       <td><%= student.first_name %></td>
       <td><%= student.last_name %></td>

@@ -28,6 +28,7 @@
   <center>
   <table>
     <tr>
+      <th>No</th>
       <th>id</th>
       <th>First Name</th>
       <th>Last Name</th>
@@ -35,8 +36,10 @@
       <th>Subject</th>
       <th colspan='2'></th>
     </tr>
+    <% var sum=1;%>
     <% data_teacher.forEach(teacher =>{%>
     <tr>
+      <td><%= sum++ %></td>
       <td><%= teacher.id %></td>
       <td><%= teacher.first_name %></td>
       <td><%= teacher.last_name %></td>

@@ -11,7 +11,7 @@ var Model = require('../models');
 // });
 
 router.get('/', function(req, res){
-  Model.Teacher.findAll()
+  Model.Teacher.findAll({order: [['first_name']]})
   .then (arrTeacher => {
     let promiseTeacher = arrTeacher.map( teacher => {
       return new Promise( function (resolve, reject) {
