@@ -107,7 +107,7 @@ router.get('/', function(req, res){
 // console.log(arr) ; // [2,4,6]
 
  router.get('/enrolledstudents/:id', function(req, res){
-   Model.StudentSubject.findAll({
+   Model.StudentSubject.findAll({ order: [['Student', 'first_name']],
      where: {
        SubjectId: req.params.id
      },
