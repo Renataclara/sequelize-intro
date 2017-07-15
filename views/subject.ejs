@@ -30,6 +30,7 @@
       <th>id</th>
       <th>Subject Name</th>
       <th>Teachers</th>
+      <th>Actions</th>
       <th colspan='2'></th>
     </tr>
     <% data_subject.forEach(subject =>{%>
@@ -37,6 +38,7 @@
       <td><%= subject.id %></td>
       <td><%= subject.subject_name %></td>
       <td><%= subject.first_name %></td>
+      <td><a href="/subjects/enrolledstudents/<%=subject.id%>">Enrolled Students</a></td>
     </tr>
       <%})%>
     </table>

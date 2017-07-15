@@ -106,4 +106,47 @@ router.get('/', function(req, res){
 //
 // console.log(arr) ; // [2,4,6]
 
+ router.get('/enrolledstudents/:id', function(req, res){
+   Model.StudentSubject.findAll({
+     where: {
+       SubjectId: req.params.id
+     },
+     include: [{all:true}]
+   })
+   .then(function (rows){
+     res.render('enrolledstudent', {data_subjectstudent:rows})
+   })
+ });
+
+ router.get('/givescore/:id/:ids', function(req, res){
+   Model.StudentSubject.findAll({
+     where: {
+       StudentId: req.params.id,
+       $and: {
+         SubjectId: req.params.ids
+       }
+     },
+     include: [{all:true}]
+   })
+   .then(function (rows){
+     res.render('givescore', {data:rows})
+   })
+ });
+
+ router.post('/givescore/:id/:ids', function(req, res){
+   Model.StudentSubject.update({ Score: req.body.score}, {
+     where: {
+       StudentId: req.params.id,
+       $and: {
+         SubjectId: req.params.ids
+       }
+     }
+   })
+   .then(function (rows){
+     res.redirect(`/subjects/enrolledstudents/${req.params.ids}`);
+   })
+ });
+
+
+
 module.exports = router;

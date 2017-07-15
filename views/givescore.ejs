@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+  <center>
+    <h1></h1><br><br>
+
+      <table>
+        <tr>
+          <th>Subject Name</th>
+          <th>Name</th>
+          <th>Score</th>
+          <th colspan='2'></th>
+        </tr>
+        <% data.forEach(ss =>{%>
+        <tr>
+          <td><%= ss.Subject.subject_name %></td>
+          <td><%= ss.Student.first_name+' '+ss.Student.last_name %></td>
+          <td><%= ss.Student.score%></td>
+        </tr>
+          <%})%>
+        </table>
+      <br>
+      <br>
+      <form action="/subjects/givescore/<%=data[0].StudentId%>/<%=data[0].SubjectId%>" method="POST">
+        Score:<br>
+        <input type="text" name="score" value="">
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+  </center>
+  </body>
+</html>
