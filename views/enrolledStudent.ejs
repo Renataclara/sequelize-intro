@@ -9,12 +9,15 @@
     <h1></h1><br><br>
       <table>
         <tr>
+          <th>No</th>
           <th>Nama</th>
           <th>Score</th>
           <th colspan='2'></th>
         </tr>
+        <% var sum=1;%>
         <% data_subjectstudent.forEach(ss =>{%>
         <tr>
+          <td><%= sum++ %></td>
           <td><%= ss.Student.first_name+' '+ss.Student.last_name %></td>
           <td>
               <% if (ss.Score !== null) { %>
