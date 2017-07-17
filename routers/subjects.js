@@ -3,6 +3,14 @@ var router = express.Router();
 var Model = require('../models');
 const giveLetter = require('../helpers/score')
 
+router.use((req, res, next) => {
+  if (req.session.user.role == 'academic' || req.session.user.role == 'headmaster') { // undefined
+    next()
+  } else {
+    res.send("woi jd academic atau headmaster dlu yaaa...")
+  }
+});
+
 router.get('/', function(req, res){
   Model.Subject.findAll()
   .then (arrSubject => {

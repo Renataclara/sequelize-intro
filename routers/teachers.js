@@ -10,6 +10,14 @@ var Model = require('../models');
 //   })
 // });
 
+router.use((req, res, next) => {
+  if (req.session.user.role == 'headmaster') { // undefined
+    next()
+  } else {
+    res.send("woi jd headmaster dlu yaaa...")
+  }
+});
+
 router.get('/', function(req, res){
   Model.Teacher.findAll({order: [['first_name']]})
   .then (arrTeacher => {
@@ -29,9 +37,7 @@ router.get('/', function(req, res){
     });
     Promise.all(promiseTeacher)
     .then( teacher => {
-      teacher.forEach(p => {
-        res.render('teacher', {data_teacher: teacher, title: 'Teachers'});
-      })
+      res.render('teacher', {data_teacher: teacher, title: 'Teachers'});
     })
   })
 });

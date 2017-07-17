@@ -3,6 +3,16 @@ var router = express.Router();
 
 var Model = require('../models');
 
+router.use((req, res, next) => {
+  console.log(req.session)
+  if (req.session.user.role == 'academic' || req.session.user.role == 'headmaster' || req.session.user.role == 'teacher') { // undefined
+    next()
+  } else {
+    res.send("woi jd academic, teacher, headmaster dlu yaaa...")
+  }
+});
+
+
 router.get('/', function(req, res){
   Model.Student.findAll({order: [['first_name']]})
   .then (function (rows) {
