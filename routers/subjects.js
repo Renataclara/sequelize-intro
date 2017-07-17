@@ -1,6 +1,7 @@
 var express = require('express')
 var router = express.Router();
 var Model = require('../models');
+const giveLetter = require('../helpers/score')
 
 router.get('/', function(req, res){
   Model.Subject.findAll()
@@ -22,89 +23,13 @@ router.get('/', function(req, res){
     Promise.all(promiseSubject)
     .then( subject => {
       console.log(subject);
-      res.render('subject', {data_subject: subject});
+      res.render('subject', {data_subject: subject, title: 'Subject'});
     })
     .catch(err => {
       console.log(err);
     })
   })
 });
-
-
-// router.get('/edit/:id', function(req, res){
-//   Contact.edit(DBmodel.connection, req.params.id)
-//   .then (function (rows){
-//     res.render('edit', {data: rows});
-//       })
-//     });
-
-// make them association together
-// function satuData(){
-//   db.Profile.create({
-//     name:'adnin'
-//   })
-//   .then((profile) => {
-//     db.Address.create ({
-// streer: 'jalan',
-// ProfileId: profile.id
-//     })
-//     .then (address => {
-//       console.log('profile sudah di buat')
-//     })
-//   })
-// };
-
-
-// ambil data dri yang association result
-// function satuData(){
-//   db.Profile.findById({
-//     .then(profile => {
-//       profile.getAddress()
-//       .then( address => {
-//         console.log(profile.name, address.street);
-//       })
-//     })
-//   })
-//   .catch(err => {
-//     console.log(err);
-//   })
-// };
-
-// ambil data dri yang association result
-// function satuData(){
-//   db.Profile.findAll({
-//     .then(arrprofile => {
-//       let promiseProfile  = arrProfile.map(x =>
-//     new Promise(function(resolve, reject) {
-//       profile.getAddress()
-//       .then(address => {
-//         profile.street = address.street;
-//         profile.city = address.city;
-//         return resolve(profile)
-//       })
-//       .catch(err => reject(err));
-//     });
-// });
-//
-// Promise.all(promiseProfile)
-// .then(profile => {
-//   console.log(profile);
-// })
-// .catch (err => {
-//   console.log(err);
-// })
-//
-//   .catch(err => {
-//     console.log(err);
-//   })
-// };
-
-// let arr = [1,2,3].map( x=> { // for each di jadiin array baru
-// console.log(x);
-// return x*2
-// })
-//
-// console.log(arr) ; // [2,4,6]
 
  router.get('/enrolledstudents/:id', function(req, res){
    Model.StudentSubject.findAll({ order: [['Student', 'first_name']],
@@ -114,7 +39,8 @@ router.get('/', function(req, res){
      include: [{all:true}]
    })
    .then(function (rows){
-     res.render('enrolledstudent', {data_subjectstudent:rows})
+     let letter = giveLetter(rows);
+     res.render('enrolledstudent', {data_subjectstudent:rows, title: 'Enrolled Student Data', scoreLetter: letter})
    })
  });
 
@@ -129,7 +55,7 @@ router.get('/', function(req, res){
      include: [{all:true}]
    })
    .then(function (rows){
-     res.render('givescore', {data:rows})
+     res.render('givescore', {data:rows, title: 'Give Score to Student'})
    })
  });
 
@@ -143,7 +69,7 @@ router.get('/', function(req, res){
      }
    })
    .then(function (rows){
-     res.redirect(`/subjects/enrolledstudents/${req.params.ids}`);
+     res.redirect(`/subjects/enrolledstudents/${req.params.ids}`, {title: 'Enrolled Student Data'});
    })
  });
 

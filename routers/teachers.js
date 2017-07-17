@@ -30,7 +30,7 @@ router.get('/', function(req, res){
     Promise.all(promiseTeacher)
     .then( teacher => {
       teacher.forEach(p => {
-        res.render('teacher', {data_teacher: teacher});
+        res.render('teacher', {data_teacher: teacher, title: 'Teachers'});
       })
     })
   })
@@ -39,7 +39,7 @@ router.get('/', function(req, res){
 router.get('/add', function(req, res){
   Model.Subject.findAll()
     .then (function (rows) {
-      res.render('teacherAdd', {data_subject: rows});
+      res.render('teacherAdd', {data_subject: rows, title: 'Add Teacher'});
 })
 });
 
@@ -47,7 +47,7 @@ router.get('/add', function(req, res){
 router.post('/add', function(req, res){
   Model.Teacher.create({ first_name: req.body.first_name, last_name: req.body.last_name, email: req.body.email, SubjectId: req.body.SubjectId })
   .then( function(){
-    res.redirect('/teachers' );
+    res.redirect('/teachers', {title: 'Teachers'});
   })
 });
 
@@ -57,7 +57,7 @@ router.get('/edit/:id', function(req, res){
   .then (function (rows){
     Model.Subject.findAll()
     .then (function (rows2){
-    res.render('teacherEdit', {data_teacher: rows, data_subject: rows2});
+    res.render('teacherEdit', {data_teacher: rows, data_subject: rows2, title: 'Edit Teacher Data'});
   })
    })
  });
@@ -69,7 +69,7 @@ router.post('/edit/:id', function(req, res) {
     }
   )
   .then( function(){
-  res.redirect('/teachers');
+  res.redirect('/teachers', {title: 'Teacher'});
   })
 });
 //
@@ -77,7 +77,7 @@ router.post('/edit/:id', function(req, res) {
 router.get('/delete/:id', function(req, res){
     Model.Teacher.destroy({where: {id : req.params.id}})
     .then( function(){
-  res.redirect('/teachers');
+  res.redirect('/teachers', {title: 'Teacher'});
   })
 });
 

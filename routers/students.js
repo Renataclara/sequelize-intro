@@ -6,12 +6,12 @@ var Model = require('../models');
 router.get('/', function(req, res){
   Model.Student.findAll({order: [['first_name']]})
   .then (function (rows) {
-    res.render('student', {data_student: rows});
+    res.render('student', {data_student: rows, title: 'Student'});
   })
 });
 
 router.get('/add', function(req, res){
-  res.render('studentAdd', {err: null}); // error message catch
+  res.render('studentAdd', {err: null, title: 'Add Student'}); // error message catch
 });
 
 //add new student req.body
@@ -21,7 +21,7 @@ router.post('/add', function(req, res){
     res.redirect('/students' );
   })
   .catch( function(err){
-    res.render('studentAdd', {err: err.message}); // error message catch
+    res.render('studentAdd', {err: err.message, title: 'Add Student'}); // error message catch
   })
 });
 
@@ -29,7 +29,7 @@ router.post('/add', function(req, res){
 router.get('/edit/:id', function(req, res){
   Model.Student.findById(req.params.id)
   .then (function (rows){
-    res.render('studentEdit', {data_student: rows});
+    res.render('studentEdit', {data_student: rows, title: 'Edit Student Data'});
   })
    });
 
@@ -39,7 +39,7 @@ router.post('/edit/:id', function(req, res) {
       where: {id: req.params.id}
     })
   .then( function(){
-  res.redirect('/students');
+  res.redirect('/students', {title: 'Edit Student Data'});
   })
 });
 
@@ -49,7 +49,7 @@ router.get('/addsubject/:id', function(req, res){
   .then (function (rows){
     Model.Subject.findAll()
     .then (function (rows2){
-    res.render('studentAddSub', {data_student: rows, data_subject: rows2});
+    res.render('studentAddSub', {data_student: rows, data_subject: rows2, title: 'Add Subject to Student'});
   })
    })
  });
@@ -57,7 +57,7 @@ router.get('/addsubject/:id', function(req, res){
 router.post('/addsubject/:id', function(req, res) {
   Model.StudentSubject.create({ StudentId: req.params.id, SubjectId: req.body.SubjectId})
   .then( function(){
-  res.redirect('/students');
+  res.redirect('/students', {title: 'Student'});
   })
 });
 
@@ -65,7 +65,7 @@ router.post('/addsubject/:id', function(req, res) {
 router.get('/delete/:id', function(req, res){
     Model.Student.destroy({where: {id : req.params.id}})
     .then( function(){
-  res.redirect('/students');
+  res.redirect('/students', {title: 'Student'});
   })
 });
 
