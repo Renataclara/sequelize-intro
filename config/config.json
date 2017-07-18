@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "user_intro",
+    "password": "12345",
+    "database": "introseq",
+    "host": "localhost",
+    "dialect": "postgres"
+  }
+}
