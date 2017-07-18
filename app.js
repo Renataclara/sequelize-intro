@@ -25,6 +25,7 @@ const teacher = require('./routers/teachers')
 const subject = require('./routers/subjects')
 const student = require('./routers/students')
 const home = require('./routers/home')
+const signup = require('./routers/signup')
 
 app.use('/', home);
 
@@ -36,6 +37,7 @@ app.use((req, res, next) => {
   }
 });
 
+app.use('/signup', signup);
 app.use('/teachers', teacher);
 app.use('/subjects', subject);
 app.use('/students', student);
