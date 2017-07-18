@@ -48,7 +48,7 @@ router.get('/enrolledstudents/:id', function(req, res){
   })
   .then(function (rows){
     let letter = giveLetter(rows);
-    res.render('enrolledstudent', {data_subjectstudent:rows, title: 'Enrolled Student Data', scoreLetter: letter})
+    res.render('enrolledStudent', {data_subjectstudent:rows, title: 'Enrolled Student Data', scoreLetter: letter})
   })
 });
 
