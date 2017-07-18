@@ -10,7 +10,7 @@ router.get('/', function(req,res){
     if(req.session.user){
       res.redirect('/students')
     }else {
-      res.render('home', {title: 'Home', msg: ''})
+      res.render('home', {title: 'Home', msg: '', role: ''})
     }
 })
 

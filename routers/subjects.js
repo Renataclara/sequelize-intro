@@ -31,7 +31,7 @@ router.get('/', function(req, res){
     Promise.all(promiseSubject)
     .then( subject => {
       console.log(subject);
-      res.render('subject', {data_subject: subject, title: 'Subject'});
+      res.render('subject', {data_subject: subject, title: 'Subject', role: req.session.user.role});
     })
     .catch(err => {
       console.log(err);
@@ -77,7 +77,7 @@ router.get('/', function(req, res){
      }
    })
    .then(function (rows){
-     res.redirect(`/subjects/enrolledstudents/${req.params.ids}`, {title: 'Enrolled Student Data'});
+     res.redirect(`/subjects/enrolledstudents/${req.params.ids}`);
    })
  });
 

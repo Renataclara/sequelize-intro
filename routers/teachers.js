@@ -37,7 +37,7 @@ router.get('/', function(req, res){
     });
     Promise.all(promiseTeacher)
     .then( teacher => {
-      res.render('teacher', {data_teacher: teacher, title: 'Teachers'});
+      res.render('teacher', {data_teacher: teacher, title: 'Teachers', role: req.session.user.role});
     })
   })
 });
@@ -53,7 +53,7 @@ router.get('/add', function(req, res){
 router.post('/add', function(req, res){
   Model.Teacher.create({ first_name: req.body.first_name, last_name: req.body.last_name, email: req.body.email, SubjectId: req.body.SubjectId })
   .then( function(){
-    res.redirect('/teachers', {title: 'Teachers'});
+    res.redirect('/teachers');
   })
 });
 
@@ -75,7 +75,7 @@ router.post('/edit/:id', function(req, res) {
     }
   )
   .then( function(){
-  res.redirect('/teachers', {title: 'Teacher'});
+  res.redirect('/teachers');
   })
 });
 //
@@ -83,7 +83,7 @@ router.post('/edit/:id', function(req, res) {
 router.get('/delete/:id', function(req, res){
     Model.Teacher.destroy({where: {id : req.params.id}})
     .then( function(){
-  res.redirect('/teachers', {title: 'Teacher'});
+  res.redirect('/teachers');
   })
 });
 
