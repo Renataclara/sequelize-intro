@@ -39,18 +39,18 @@ router.get('/', function(req, res){
   })
 });
 
- router.get('/enrolledstudents/:id', function(req, res){
-   Model.StudentSubject.findAll({ order: [['Student', 'first_name']],
-     where: {
-       SubjectId: req.params.id
-     },
-     include: [{all:true}]
-   })
-   .then(function (rows){
-     let letter = giveLetter(rows);
-     res.render('enrolledstudent', {data_subjectstudent:rows, title: 'Enrolled Student Data', scoreLetter: letter})
-   })
- });
+router.get('/enrolledstudents/:id', function(req, res){
+  Model.StudentSubject.findAll({ order: [['Student', 'first_name']],
+    where: {
+      SubjectId: req.params.id
+    },
+    include: [{all:true}]
+  })
+  .then(function (rows){
+    let letter = giveLetter(rows);
+    res.render('enrolledstudent', {data_subjectstudent:rows, title: 'Enrolled Student Data', scoreLetter: letter})
+  })
+});
 
  router.get('/givescore/:id/:ids', function(req, res){
    Model.StudentSubject.findAll({

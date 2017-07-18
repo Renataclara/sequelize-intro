@@ -9,6 +9,7 @@ var Subject = require('./models/subject');
 var Student = require('./models/student');
 
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'))
 
 app.use(session({
   secret: 'hacktiv8',
@@ -41,4 +42,4 @@ app.use('/students', student);
 
 
 
-app.listen(3000);
+app.listen(4000);
