@@ -1,13 +1,22 @@
 var express = require('express')
 var router = express.Router();
 var Model = require('../models');
+const crypto = require('crypto');
+const hash = require('../helpers/hash')
 
 router.get('/', function(req,res){
-    if(req.session.user){
-      res.redirect('/students')
-    }else {
-      res.render('signup', {title: 'Sign Up', msg: '', role: ''})
-    }
+  res.render('signup', {title: 'Signup', msg: ''})
+})
+
+router.post('/', function(req,res){
+  Model.User.create({
+    username: req.body.username,
+    password: req.body.password,
+    role: req.body.role
+  })
+  .then(function(){
+    res.redirect('/login')
+  })
 })
 //
 // router.post('/', function(req,res){

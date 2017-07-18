@@ -28,6 +28,7 @@ const home = require('./routers/home')
 const signup = require('./routers/signup')
 
 app.use('/', home);
+app.use('/signup', signup);
 
 app.use((req, res, next) => {
   if (req.session.user) { // undefined
@@ -44,4 +45,4 @@ app.use('/students', student);
 
 
 
-app.listen(process.env.PORT || 8080);
+app.listen(process.env.PORT || 3000);

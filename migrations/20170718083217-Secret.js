@@ -3,7 +3,7 @@
 module.exports = {
   up: function (queryInterface, Sequelize) {
     return queryInterface.addColumn(
-    'StudentSubjects',
+    'Users',
     'Secret',
     Sequelize.STRING);
   },
@@ -16,5 +16,10 @@ module.exports = {
       Example:
       return queryInterface.dropTable('users');
     */
+    // return queryInterface.removeColumn({
+    //   tableName: 'StudentSubjects',
+    //   column: 'Secret'
+    // },
+
   }
 };

@@ -11,11 +11,14 @@
     <ul class="nav navbar-nav">
 
       <li class="active"><a href="/">Home</a></li>
+      <li class="active"><a href="/logout">Log out</a></li>
+
       <% if (role == 'headmaster') { %>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/teachers"> Teachers <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="/teachers">List</a></li>
           <li><a href="/teachers/add">Add New Teacher</a></li>
+          
         </ul>
       </li>
       <%} %>

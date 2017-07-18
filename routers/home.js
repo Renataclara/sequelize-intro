@@ -1,6 +1,7 @@
 var express = require('express')
 var router = express.Router();
 var Model = require('../models');
+const hash = require('../helpers/hash');
 
 // router.get('/', function(req, res){
 //     res.render('home', {title: 'Home'});
@@ -27,7 +28,9 @@ router.post('/', function(req,res){
       }
     })
     .then(function(row){
-      if(row.password == req.body.password)
+      console.log('---'+row.Secret);
+      let key = hash(row.Secret, req.body.password);
+      if(row.password == key)
       {
           req.session.user = {
             username: req.body.username,
@@ -52,10 +55,10 @@ router.post('/', function(req,res){
   }
 });
 
-// router.get('/logout', function(req,res){
-//   req.session.destroy( err => {
-//     res.redirect('/');
-//   })
-// })
+router.get('/logout', function(req,res){
+  req.session.destroy( err => {
+    res.redirect('/');
+  })
+})
 
 module.exports = router;
