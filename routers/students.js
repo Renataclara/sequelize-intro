@@ -75,7 +75,7 @@ router.post('/addsubject/:id', function(req, res) {
 router.get('/delete/:id', function(req, res){
     Model.Student.destroy({where: {id : req.params.id}}) // dan yg di studentsubject
     .then( function(){
-      Model.StudentSubject.destroy({StudentId: req.params.id})
+      Model.StudentSubject.destroy({where: {StudentId: req.params.id}})
       .then( function(){
   res.redirect('/students');
       })
